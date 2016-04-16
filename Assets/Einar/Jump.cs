@@ -14,14 +14,14 @@ public class Jump : MonoBehaviour {
 
 		RaycastHit2D cast = Physics2D.Raycast (btm, Vector2.down);
 		float dist = cast.fraction;
-  		return dist < .1f;
+		return dist < .1f && !cast.collider.isTrigger;
 	}
 	
 	void Update ()
     {
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
 
-		if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() == true)
+		if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             rigidbody.AddForce(transform.up * jumpPower);
         }

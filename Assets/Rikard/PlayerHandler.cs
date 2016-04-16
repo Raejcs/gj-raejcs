@@ -1,21 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SteteHandler : AbstractState {
+public class PlayerHandler : MonoBehaviour {
+	
+	private BaseSatate baseState = new BaseSatate();
 
-	public KeyCode toggleKey = KeyCode.S;
+	void Start(){
+		baseState.type = Global.type;
+		baseState.SetMaterialByType(GetComponent<MeshRenderer>());
+	}
 
 	void Update () {
-		type = Global.type;
-
-		if (Input.GetKeyDown (toggleKey)) {
+		if (Input.GetKeyDown (KeyCode.S)) {
 			Global.type = GetNextType ();
-			SetMaterialByType ();
+			baseState.type = Global.type;
+			baseState.SetMaterialByType (GetComponent<MeshRenderer>());
 		}
 	}
 
 	SOType GetNextType(){
-		switch (type) {
+		switch (baseState.type) {
 		case SOType.Blue:
 			return SOType.Red;
 		case SOType.Red:

@@ -1,24 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class AbstractState : MonoBehaviour {
+public class BaseSatate {
 
 	public SOType type = SOType.Red;
 
 	private static Material blue = Resources.Load ("BlueSO", typeof(Material)) as Material;
 	private static Material red = Resources.Load ("RedSO", typeof(Material)) as Material;
 
-	// Use this for initialization
-	void Start () {
-		SetMaterialByType();
-	}
-
-	void Update () {
-		
-	}
-
-	public void SetMaterialByType(){
-		MeshRenderer mr = GetComponent<MeshRenderer> ();
+	public void SetMaterialByType(MeshRenderer mr){
 
 		switch (type) {
 		case SOType.Blue:
@@ -29,7 +19,6 @@ public abstract class AbstractState : MonoBehaviour {
 			break;
 		}
 	}
-		
 		
 	public SOType GetCurrentType(){
 		return Global.type;
