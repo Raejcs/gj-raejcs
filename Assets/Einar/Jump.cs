@@ -7,6 +7,7 @@ public class Jump : MonoBehaviour {
     public bool grounded = true;
     public float jumpPower = 190;
 
+
 	void Start () {
 
 
@@ -28,16 +29,6 @@ public class Jump : MonoBehaviour {
             grounded = false;
         }
 
-        // Global.state = grounded ? 0 : 1;
-
-        if (grounded == true)
-        {
-            Global.state = 0;
-        }
-        else
-        {
-            Global.state = 1;
-        }
-        
+       
 	}
 }
