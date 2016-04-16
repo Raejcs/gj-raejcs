@@ -3,7 +3,6 @@ using System.Collections;
 
 public class StateHandler : MonoBehaviour {
 
-	public bool isDeadly = false;
 	public SOType type = SOType.Red;
 	private BaseSatate baseState = new BaseSatate();
 
