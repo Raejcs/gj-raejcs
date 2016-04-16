@@ -3,5 +3,5 @@ using System.Collections;
 
 public class Global {
 	// State of the changing game objects
-	public static int state = 0;
+	public static SOType type = 0;
 }

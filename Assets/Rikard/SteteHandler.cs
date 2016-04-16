@@ -3,31 +3,50 @@ using System.Collections;
 
 public class SteteHandler : MonoBehaviour {
 
-	public int myState = 0;
+	public SOType type = SOType.Red;
+	public bool isDeadly = false;
+	public bool isPlayer = false;
 
-	private static Material opaque = Resources.Load ("OpaqueSO", typeof(Material)) as Material;
-	private static Material transparent = Resources.Load ("TransparentSO", typeof(Material)) as Material;
+	private static Material blue = Resources.Load ("BlueSO", typeof(Material)) as Material;
+	private static Material red = Resources.Load ("RedSO", typeof(Material)) as Material;
 
 	// Use this for initialization
 	void Start () {
-		
+		MeshRenderer mr = GetComponent<MeshRenderer> ();
+
+		switch (type) {
+		case SOType.Blue:
+			mr.material = blue;
+			break;
+		case SOType.Red:
+			mr.material = red;
+			break;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		SetPropertiesByState ();
+		if (!isPlayer) {
+			SetPropertiesByState ();
+		}
 	}
 
-	int GetState(){
-		return Global.state;
+
+	SOType GetCurrentType(){
+		return Global.type;
 	}
 
 	void SetPropertiesByState(){
 		MeshRenderer mr = GetComponent<MeshRenderer> ();
-		if(GetState() == myState){
-			mr.material = transparent;
+		Color c = mr.material.color;
+		Color newColor = new Color(c.r,c.g,c.b,c.a);
+
+		if(GetCurrentType() == type){
+			newColor.a = .5f;
 		} else {
-			mr.material = opaque;
+			newColor.a = 1;
 		}
+
+		mr.material.color= newColor;
 	}
 }
