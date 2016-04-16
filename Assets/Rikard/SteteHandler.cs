@@ -24,13 +24,10 @@ public class SteteHandler : MonoBehaviour {
 
 	void SetPropertiesByState(){
 		MeshRenderer mr = GetComponent<MeshRenderer> ();
-		switch (GetState()) {
-		case myState:
+		if(GetState() == myState){
 			mr.material = transparent;
-			break;
-		default:
+		} else {
 			mr.material = opaque;
-			break;
 		}
 	}
 }
