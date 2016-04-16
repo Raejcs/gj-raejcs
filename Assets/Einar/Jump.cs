@@ -2,33 +2,28 @@
 using System.Collections;
 
 public class Jump : MonoBehaviour {
-
-
-    public bool grounded = true;
-    public float jumpPower = 190;
-
+    public float jumpPower = 400;
+	//private bool isGrounded = false;
 
 	void Start () {
+	}
 
+	bool IsGrounded() {
+		BoxCollider2D collider = GetComponent<BoxCollider2D> ();
+		Vector2 btm = new Vector2 (collider.bounds.center.x, collider.bounds.center.y - collider.bounds.extents.y-.01f);
 
-	
+		RaycastHit2D cast = Physics2D.Raycast (btm, Vector2.down);
+		float dist = cast.fraction;
+  		return dist < .1f;
 	}
 	
 	void Update ()
     {
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
 
-        if (!grounded && rigidbody.velocity.y == 0)
-        {
-            grounded = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && grounded == true)
+		if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() == true)
         {
             rigidbody.AddForce(transform.up * jumpPower);
-            grounded = false;
         }
-
-       
 	}
 }
