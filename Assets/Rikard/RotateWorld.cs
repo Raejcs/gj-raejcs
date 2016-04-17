@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class RotateWorld : MonoBehaviour {
-	public static float rotationSpeed = 0.03f;
+	public float rotationSpeed = 0.03f;
 
 	// Use this for initialization
 	void Start () {
