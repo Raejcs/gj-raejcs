@@ -11,7 +11,15 @@ public class PlayerHandler : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
+		var p = transform.position;
+		var p2 = coll.gameObject.transform.position;
+		var dp = p - p2;
 
+		var ang = Mathf.Abs(Mathf.Atan (dp.y / dp.x));
+
+		if (ang < 0.9) {
+			Global.restartCurrentScene ();
+		}
 	}
 
 	void Update () {

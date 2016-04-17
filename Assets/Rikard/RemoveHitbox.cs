@@ -12,6 +12,12 @@ public class RemoveHitbox : MonoBehaviour {
 		
 	}
 
+	void OnTriggerEnter2D(Collision2D coll){
+		if (coll.gameObject.tag == "Player") {
+			setHitbox (false, hitbox);
+		}
+	}
+
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "Player") {
 			setHitbox (false, hitbox);
