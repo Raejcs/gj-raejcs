@@ -41,20 +41,19 @@ public class RemoveHitbox : MonoBehaviour {
 
 	void setHitbox(bool state, Hitbox hitbox){
 		var level = GetLevel (hitbox);
-		var target = (GameObject) GameObject.FindWithTag (level);
+		var targets = (GameObject[]) GameObject.FindGameObjectsWithTag (level);
 
+		foreach(var target in targets){
+			if(target != null){
 		var col = target.GetComponent<Collider2D> ();
 		var myCollider = GetComponent<Collider2D> ();
 
 		if (col) {
 			col.isTrigger = !state;
 			myCollider.isTrigger = true;
-
-			var mainCamera = (GameObject) GameObject.FindWithTag ("MainCamera");
-			mainCamera.transform.position = new Vector3(mainCamera.transform.position.x,cameraY,mainCamera.transform.position.z);
-
 		}
-		
+			}
+		}
 	}
 }
 
