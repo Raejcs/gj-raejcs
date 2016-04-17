@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class rotate : MonoBehaviour {
+public class rotate : MonoBehaviour
+{
 
 
     public float rotationx;
@@ -16,9 +17,9 @@ public class rotate : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
-
-        gameObject.transform.Rotate(rotationx, rotationy, rotationz);
-
+        if (Global.playerIsGrounded)
+        {
+            gameObject.transform.Rotate(rotationx, rotationy, rotationz);
+        }
     }
 }
