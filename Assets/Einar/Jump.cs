@@ -24,7 +24,17 @@ public class Jump : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() || Input.GetKeyDown(KeyCode.Space) && jumpCount == 1)
         {
-            rigidbody.AddForce(transform.up * jumpPower);
+
+            if (jumpCount == 1)
+            {
+                rigidbody.velocity = Vector2.zero;
+                rigidbody.AddForce(transform.up * jumpPower);
+            }
+            else
+            {
+                rigidbody.AddForce(transform.up * jumpPower);
+            }
+            
 
             jumpCount += 1;
 
