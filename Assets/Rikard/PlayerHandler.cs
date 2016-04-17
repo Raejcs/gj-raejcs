@@ -12,19 +12,22 @@ public class PlayerHandler : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
-		var p = transform.position;
-		var p2 = coll.gameObject.transform.position;
+		if (coll.gameObject.tag != "Ground") {
 
-		Vector3 b2 = coll.gameObject.GetComponent<Collider2D> ().bounds.extents;
+			var p = transform.position;
+			var p2 = coll.gameObject.transform.position;
 
-		Vector3 dp = p - p2;
+			Vector3 b2 = coll.gameObject.GetComponent<Collider2D> ().bounds.extents;
 
-		dp.y *= b2.x / b2.y;
+			Vector3 dp = p - p2;
 
-		var ang = Mathf.Abs(Mathf.Atan (dp.y / dp.x));
+			dp.y *= b2.x / b2.y;
 
-		if (ang < killQuote) {
-			Global.restartCurrentScene ();
+			var ang = Mathf.Abs (Mathf.Atan (dp.y / dp.x));
+
+			if (ang < killQuote) {
+				Global.restartCurrentScene ();
+			}
 		}
 	}
 

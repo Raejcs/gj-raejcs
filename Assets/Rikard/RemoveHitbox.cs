@@ -12,12 +12,6 @@ public class RemoveHitbox : MonoBehaviour {
 		
 	}
 
-	void OnTriggerEnter2D(Collision2D coll){
-		if (coll.gameObject.tag == "Player") {
-			setHitbox (false, hitbox);
-		}
-	}
-
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "Player") {
 			setHitbox (false, hitbox);
@@ -47,12 +41,15 @@ public class RemoveHitbox : MonoBehaviour {
 	}
 
 	void setHitbox(bool state, Hitbox hitbox){
-		var target = (GameObject) GameObject.FindWithTag (GetLevel(hitbox));
+		var level = GetLevel (hitbox);
+		var target = (GameObject) GameObject.FindWithTag (level);
 
 		var col = target.GetComponent<Collider2D> ();
+		var myCollider = GetComponent<Collider2D> ();
 
 		if (col) {
 			col.isTrigger = !state;
+			myCollider.isTrigger = true;
 
 			var mainCamera = (GameObject) GameObject.FindWithTag ("MainCamera");
 			mainCamera.transform.position = new Vector3(mainCamera.transform.position.x,cameraY,mainCamera.transform.position.z);
