@@ -7,7 +7,7 @@ public class RemoveHitbox : MonoBehaviour {
 	public float levelSpeed = 0.03f;
 	public float cameraY = 8f;
 
-	public float cameraSpeed = 10.0F;
+	public float cameraSpeed = 30.0F;
 	private float startTime;
 	private float journeyLength;
 	private Vector3 startTransition;
