@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerHandler : MonoBehaviour {
 	
 	private BaseSatate baseState = new BaseSatate();
+	public float killQuote = 0.7f;
 
 	void Start(){
 		baseState.type = Global.type;
@@ -22,7 +23,7 @@ public class PlayerHandler : MonoBehaviour {
 
 		var ang = Mathf.Abs(Mathf.Atan (dp.y / dp.x));
 
-		if (ang < 0.7) {
+		if (ang < killQuote) {
 			Global.restartCurrentScene ();
 		}
 	}
