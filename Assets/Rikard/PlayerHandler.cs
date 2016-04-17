@@ -10,20 +10,16 @@ public class PlayerHandler : MonoBehaviour {
 		baseState.SetMaterialByType(GetComponent<MeshRenderer>());
 	}
 
+	void OnCollisionEnter2D(Collision2D coll){
+
+	}
+
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.S)) {
 			Global.type = GetNextType ();
 			baseState.type = Global.type;
 			baseState.SetMaterialByType (GetComponent<MeshRenderer>());
 		}
-
-		Global.rotationSpeed = 1 / (transform.position.y / 8f);
-
-		Debug.Log (Global.rotationSpeed);
-
-		// Camera follow
-		var mainCamera = (GameObject) GameObject.FindWithTag ("MainCamera");
-		mainCamera.transform.position = new Vector3(transform.position.x,transform.position.y,transform.position.z- 10);
 	}
 
 	SOType GetNextType(){

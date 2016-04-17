@@ -2,12 +2,11 @@
 using System.Collections;
 
 public class RotateWorld : MonoBehaviour {
-
-	public float rotationSpeed = 1;
+	public static float rotationSpeed = 0.03f;
 
 	// Use this for initialization
 	void Start () {
-	
+		Global.rotationSpeed = rotationSpeed;
 	}
 	
 	// Update is called once per frame
@@ -17,7 +16,7 @@ public class RotateWorld : MonoBehaviour {
 
 	void RotateStep(){
 		float delta = 60 / Time.deltaTime;
-		float rotation = delta * rotationSpeed * .001f * Global.rotationSpeed;
+		float rotation = delta * .001f * Global.rotationSpeed;
 		// Rotate the object around its local Y axis at 1 degree per second
 		transform.RotateAround(transform.position, Vector3.forward, rotation);
 	}

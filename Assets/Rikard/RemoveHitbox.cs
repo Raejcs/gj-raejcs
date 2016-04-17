@@ -4,7 +4,8 @@ using System.Collections;
 public class RemoveHitbox : MonoBehaviour {
 
 	public Hitbox hitbox = Hitbox.LEVEL1;
-
+	public float levelSpeed = 0.03f;
+	public float cameraY = 8f;
 
 	// Use this for initialization
 	void Start () {
@@ -46,6 +47,10 @@ public class RemoveHitbox : MonoBehaviour {
 
 		if (col) {
 			col.isTrigger = !state;
+
+			var mainCamera = (GameObject) GameObject.FindWithTag ("MainCamera");
+			mainCamera.transform.position = new Vector3(mainCamera.transform.position.x,cameraY,mainCamera.transform.position.z);
+
 		}
 		
 	}
