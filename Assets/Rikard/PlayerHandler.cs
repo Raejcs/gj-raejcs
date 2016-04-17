@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerHandler : MonoBehaviour {
 	
 	private BaseSatate baseState = new BaseSatate();
+	public float killQuote = 0.7f;
 
 	void Start(){
 		baseState.type = Global.type;
@@ -13,11 +14,16 @@ public class PlayerHandler : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll){
 		var p = transform.position;
 		var p2 = coll.gameObject.transform.position;
-		var dp = p - p2;
+
+		Vector3 b2 = coll.gameObject.GetComponent<Collider2D> ().bounds.extents;
+
+		Vector3 dp = p - p2;
+
+		dp.y *= b2.x / b2.y;
 
 		var ang = Mathf.Abs(Mathf.Atan (dp.y / dp.x));
 
-		if (ang < 0.9) {
+		if (ang < killQuote) {
 			Global.restartCurrentScene ();
 		}
 	}
