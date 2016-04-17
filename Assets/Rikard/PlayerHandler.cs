@@ -52,8 +52,6 @@ public class PlayerHandler : MonoBehaviour {
 				as2.mute = true;
 				break;
 			}
-
-
 		}
 	}
 

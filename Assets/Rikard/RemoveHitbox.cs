@@ -7,6 +7,13 @@ public class RemoveHitbox : MonoBehaviour {
 	public float levelSpeed = 0.03f;
 	public float cameraY = 8f;
 
+	public float cameraSpeed = 10.0F;
+	private float startTime;
+	private float journeyLength;
+	private Vector3 startTransition;
+	private Vector3 endTransition;
+	private bool transitioning = false;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -15,12 +22,31 @@ public class RemoveHitbox : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "Player") {
 			setHitbox (false, hitbox);
+			var mainCamera = (GameObject) GameObject.FindWithTag ("MainCamera");
+
+			transitioning = true;
+			startTime = Time.time;
+			journeyLength = mainCamera.transform.position.y - cameraY;
+			startTransition = mainCamera.transform.position;
+			endTransition = new Vector3 (startTransition.x, cameraY, startTransition.z);
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (transitioning) {
+			float distCovered = (Time.time - startTime) * cameraSpeed;
+			float fracJourney = distCovered / journeyLength;
+
+			var mainCamera = (GameObject) GameObject.FindWithTag ("MainCamera");
+			mainCamera.transform.position = Vector3.Lerp (startTransition, endTransition, fracJourney);
+
+			Debug.Log (fracJourney);
+
+			if (fracJourney > 1) {
+				transitioning = false;
+			}
+		}
 		
 	}
 
@@ -45,13 +71,13 @@ public class RemoveHitbox : MonoBehaviour {
 
 		foreach(var target in targets){
 			if(target != null){
-		var col = target.GetComponent<Collider2D> ();
-		var myCollider = GetComponent<Collider2D> ();
+				var col = target.GetComponent<Collider2D> ();
+				var myCollider = GetComponent<Collider2D> ();
 
-		if (col) {
-			col.isTrigger = !state;
-			myCollider.isTrigger = true;
-		}
+				if (col) {
+					col.isTrigger = !state;
+					myCollider.isTrigger = true;
+				}
 			}
 		}
 	}
