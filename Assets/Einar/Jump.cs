@@ -38,9 +38,11 @@ public class Jump : MonoBehaviour {
 				rigidbody.velocity = Vector2.zero;
 				rigidbody.AddForce (transform.up * jumpPower);
 
-				jumpAudioSource.Play();
-
 				jumpCount++;
+
+				if (jumpAudioSource != null) {
+					jumpAudioSource.Play ();
+				}
 			}
 		}
 	}
