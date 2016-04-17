@@ -32,7 +32,7 @@ public class PlayerHandler : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.S)|| Input.GetKeyDown(KeyCode.DownArrow)) {
+		if (Input.GetKeyDown (KeyCode.S)|| Input.GetKeyDown(KeyCode.DownArrow)||Input.GetMouseButtonDown(1)) {
 			Global.type = GetNextType ();
 			baseState.type = Global.type;
 			baseState.SetMaterialByType (GetComponent<MeshRenderer>());

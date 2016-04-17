@@ -32,7 +32,7 @@ public class Jump : MonoBehaviour {
         bool grounded = IsGrounded();
         Global.playerIsGrounded = grounded;
 
-		if (Input.GetKeyDown (KeyCode.Space)|| Input.GetKeyDown(KeyCode.UpArrow)) {
+		if (Input.GetKeyDown (KeyCode.Space)|| Input.GetKeyDown(KeyCode.UpArrow)|| Input.GetMouseButtonDown(0)) {
 
 			if (grounded) {
 				jumpCount = 0;
