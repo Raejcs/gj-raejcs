@@ -20,7 +20,11 @@ public class Jump : MonoBehaviour {
 
 		RaycastHit2D cast = Physics2D.Raycast (btm, Vector2.down);
 		float dist = cast.fraction;
-		return dist < .1f && !cast.collider.isTrigger;
+		if (cast.collider != null) {
+			return dist < .1f && !cast.collider.isTrigger;
+		} else {
+			return false;
+		}
 	}
 	
 	void Update ()
