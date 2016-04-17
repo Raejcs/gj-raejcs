@@ -36,6 +36,24 @@ public class PlayerHandler : MonoBehaviour {
 			Global.type = GetNextType ();
 			baseState.type = Global.type;
 			baseState.SetMaterialByType (GetComponent<MeshRenderer>());
+
+			var as1 = GameObject.Find("Audio1").GetComponent<AudioSource>();
+			var as2 = GameObject.Find("Audio2").GetComponent<AudioSource>();
+			var asSwap = GameObject.Find("AudioSwap").GetComponent<AudioSource>();
+			asSwap.Play ();
+
+			switch (baseState.type) {
+			case SOType.Blue:
+				as1.mute = true;
+				as2.mute = false;
+				break;
+			case SOType.Red:
+				as1.mute = false;
+				as2.mute = true;
+				break;
+			}
+
+
 		}
 	}
 

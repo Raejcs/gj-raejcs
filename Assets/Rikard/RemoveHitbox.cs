@@ -37,7 +37,6 @@ public class RemoveHitbox : MonoBehaviour {
 		default:
 			return "";
 		}
-
 	}
 
 	void setHitbox(bool state, Hitbox hitbox){
