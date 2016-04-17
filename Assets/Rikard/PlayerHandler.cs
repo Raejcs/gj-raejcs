@@ -16,6 +16,14 @@ public class PlayerHandler : MonoBehaviour {
 			baseState.type = Global.type;
 			baseState.SetMaterialByType (GetComponent<MeshRenderer>());
 		}
+
+		Global.rotationSpeed = 1 / (transform.position.y / 8f);
+
+		Debug.Log (Global.rotationSpeed);
+
+		// Camera follow
+		var mainCamera = (GameObject) GameObject.FindWithTag ("MainCamera");
+		mainCamera.transform.position = new Vector3(transform.position.x,transform.position.y,transform.position.z- 10);
 	}
 
 	SOType GetNextType(){

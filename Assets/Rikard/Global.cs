@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Global {
 	// State of the changing game objects
 	public static SOType type = 0;
+	public static float rotationSpeed = 0;
 
 	public static void restartCurrentScene()
 	{

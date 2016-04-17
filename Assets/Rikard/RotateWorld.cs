@@ -17,7 +17,7 @@ public class RotateWorld : MonoBehaviour {
 
 	void RotateStep(){
 		float delta = 60 / Time.deltaTime;
-		float rotation = delta * rotationSpeed * .001f;
+		float rotation = delta * rotationSpeed * .001f * Global.rotationSpeed;
 		// Rotate the object around its local Y axis at 1 degree per second
 		transform.RotateAround(transform.position, Vector3.forward, rotation);
 	}
