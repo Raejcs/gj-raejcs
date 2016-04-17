@@ -3,15 +3,16 @@ using System.Collections;
 
 public class Jump : MonoBehaviour {
     public float jumpPower = 400;
-    public bool dubbleJumpFix = true;
     int jumpCount = 0;
 
 	Rigidbody2D rigidbody;
 	BoxCollider2D collider;
+	AudioSource jumpAudioSource; 
 
     void Start () {
 		rigidbody = GetComponent<Rigidbody2D>();
 		collider = GetComponent<BoxCollider2D> ();
+		jumpAudioSource = GetComponent<AudioSource>();
 	}
 
 	bool IsGrounded() {
@@ -35,6 +36,9 @@ public class Jump : MonoBehaviour {
 			if (grounded || jumpCount < 2) {
 				rigidbody.velocity = Vector2.zero;
 				rigidbody.AddForce (transform.up * jumpPower);
+
+				jumpAudioSource.Play();
+
 				jumpCount++;
 			}
 		}
