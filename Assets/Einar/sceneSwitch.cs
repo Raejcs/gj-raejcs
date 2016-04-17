@@ -13,7 +13,8 @@ public class sceneSwitch : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Application.LoadLevel("TheScene");
+            Application.LoadLevel("cell1");
+            
         }
                
     }

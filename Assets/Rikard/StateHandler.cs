@@ -19,14 +19,20 @@ public class StateHandler : MonoBehaviour {
 
 	void SetPropertiesByState(){
 		MeshRenderer mr = GetComponent<MeshRenderer> ();
-		BoxCollider2D collider = GetComponent<BoxCollider2D> ();
+       
+        BoxCollider2D collider = GetComponent<BoxCollider2D> ();
 
 		Color c = mr.material.color;
 		Color newColor = new Color(c.r,c.g,c.b,c.a);
 
 		if(baseState.GetCurrentType() != baseState.type){
-			newColor.a = .10f;
-			collider.isTrigger = true;
+            //newColor.a = .10f;
+
+            newColor.a = 0.005f;
+            
+
+            collider.isTrigger = true;
+          
 		} else {
 			newColor.a = 1;
 			collider.isTrigger = false;

@@ -3,15 +3,21 @@ using System.Collections;
 
 public class RotateWorld : MonoBehaviour {
 	public float rotationSpeed = 0.03f;
-
+    bool inGame;
 	// Use this for initialization
 	void Start () {
 		Global.rotationSpeed = rotationSpeed;
+        inGame = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		RotateStep();
+
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) { inGame = true; }
+
+            if(inGame)
+            { RotateStep(); }
+            
 	}
 
 	void RotateStep(){
