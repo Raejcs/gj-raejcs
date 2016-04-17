@@ -22,10 +22,9 @@ public class PlayerHandler : MonoBehaviour {
 
 		var ang = Mathf.Abs(Mathf.Atan (dp.y / dp.x));
 
-		if (ang < 0.8) {
+		if (ang < 0.7) {
 			Global.restartCurrentScene ();
 		}
-		Debug.Log (ang);
 	}
 
 	void Update () {
