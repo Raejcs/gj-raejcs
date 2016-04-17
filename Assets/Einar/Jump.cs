@@ -6,6 +6,9 @@ public class Jump : MonoBehaviour {
     public bool dubbleJumpFix = true;
     int jumpCount = 0;
 
+    public AudioClip Mario_Jumping;
+    float vol = 1.0f;
+
     void Start () {
 	}
 
@@ -22,8 +25,9 @@ public class Jump : MonoBehaviour {
 	void Update ()
     {
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+        AudioSource source = GetComponent<AudioSource>();
 
-		if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() || Input.GetKeyDown(KeyCode.Space) && jumpCount == 1)
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() || Input.GetKeyDown(KeyCode.Space) && jumpCount == 1)
         {
 
             if (dubbleJumpFix)
@@ -33,16 +37,25 @@ public class Jump : MonoBehaviour {
                 {
                     rigidbody.velocity = Vector2.zero;
                     rigidbody.AddForce(transform.up * jumpPower);
+
+                    //source.PlayOneShot(Mario_Jumping, vol);
+                    source.Play();
                 }
                 else
                 {
                     rigidbody.AddForce(transform.up * jumpPower);
+
+                    //source.PlayOneShot(Mario_Jumping, vol);
+                    source.Play();
                 }
             }
 
             else
             {
                 rigidbody.AddForce(transform.up * jumpPower);
+
+                //source.PlayOneShot(Mario_Jumping, vol);
+                source.Play();
             }
 
             jumpCount += 1;
