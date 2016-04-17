@@ -25,7 +25,7 @@ public class StateHandler : MonoBehaviour {
 		Color newColor = new Color(c.r,c.g,c.b,c.a);
 
 		if(baseState.GetCurrentType() != baseState.type){
-			newColor.a = .25f;
+			newColor.a = .10f;
 			collider.isTrigger = true;
 		} else {
 			newColor.a = 1;
