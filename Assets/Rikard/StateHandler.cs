@@ -6,6 +6,7 @@ public class StateHandler : MonoBehaviour {
 	public SOType type = SOType.Red;
 	private BaseSatate baseState = new BaseSatate();
 
+
 	void Start(){
 		baseState.type = type;
 		SetPropertiesByState ();

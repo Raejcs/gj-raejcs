@@ -3,12 +3,11 @@ using System.Collections;
 
 public class EnterCore : MonoBehaviour {
 
-   
+    AudioSource AudioSource;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
+    void Start () {
+        AudioSource = GetComponent<AudioSource>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -16,16 +15,13 @@ public class EnterCore : MonoBehaviour {
 
 	}
 
-    void OnTrigger2DEnter(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D other)
     {
 
-        Debug.Log("enter core");
-
-        if (coll.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-
-
-            Application.LoadLevelAdditive(1);
+            AudioSource.Play();
+            Application.LoadLevel("EndScene");
 
         }
     }

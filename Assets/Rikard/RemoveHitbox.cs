@@ -4,7 +4,7 @@ using System.Collections;
 public class RemoveHitbox : MonoBehaviour {
 
 	public Hitbox hitbox = Hitbox.LEVEL1;
-	public float levelSpeed = 0.03f;
+	public float levelSpeed;
 	public float cameraY = 8f;
 
 	public float cameraSpeed = 30.0F;
@@ -13,6 +13,8 @@ public class RemoveHitbox : MonoBehaviour {
 	private Vector3 startTransition;
 	private Vector3 endTransition;
 	private bool transitioning = false;
+
+    
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +31,9 @@ public class RemoveHitbox : MonoBehaviour {
 			journeyLength = mainCamera.transform.position.y - cameraY;
 			startTransition = mainCamera.transform.position;
 			endTransition = new Vector3 (startTransition.x, cameraY, startTransition.z);
+
+            
+
 		}
 	}
 	

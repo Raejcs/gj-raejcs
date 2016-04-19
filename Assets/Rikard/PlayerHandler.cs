@@ -5,14 +5,16 @@ public class PlayerHandler : MonoBehaviour {
 	
 	private BaseSatate baseState = new BaseSatate();
 	public float killQuote = 0.7f;
+    public AudioSource StateRedAudioSource;
+    public AudioSource StateBlueAudioSource;
 
-	void Start(){
+    void Start(){
 		baseState.type = Global.type;
 		baseState.SetMaterialByType(GetComponent<MeshRenderer>());
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
-		if (coll.gameObject.tag != "Ground") {
+		if (coll.gameObject.tag != "Ground"&& coll.gameObject.tag != "Trigger") {
 
 			var p = transform.position;
 			var p2 = coll.gameObject.transform.position;
@@ -40,17 +42,21 @@ public class PlayerHandler : MonoBehaviour {
 			var as1 = GameObject.Find("Audio1").GetComponent<AudioSource>();
 			var as2 = GameObject.Find("Audio2").GetComponent<AudioSource>();
 			var asSwap = GameObject.Find("AudioSwap").GetComponent<AudioSource>();
-			asSwap.Play ();
+			
 
 			switch (baseState.type) {
 			case SOType.Blue:
 				as1.mute = true;
 				as2.mute = false;
-				break;
+                    //asSwap.Play();
+                    StateBlueAudioSource.Play();
+                    break;
 			case SOType.Red:
 				as1.mute = false;
 				as2.mute = true;
-				break;
+                    StateRedAudioSource.Play();
+
+                    break;
 			}
 		}
 	}
@@ -65,4 +71,13 @@ public class PlayerHandler : MonoBehaviour {
 			return SOType.Red;
 		}
 	}
+
+   
+          
+            
+
+      
+
+    
+
 }
